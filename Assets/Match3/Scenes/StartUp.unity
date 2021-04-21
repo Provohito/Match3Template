@@ -241,3 +241,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a939cd8b6a47ca946922b391bb8ae855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelsConfigs:
+  - stepsCount: 5
+    matchCount: 2
+  - stepsCount: 10
+    matchCount: 5
+  - stepsCount: 15
+    matchCount: 10
+  - stepsCount: 20
+    matchCount: 15

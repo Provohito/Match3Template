@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Match3.Base;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,9 @@ namespace Match3
         [SerializeField]
         GameObject levelBtnPrefab;
 
-        public void ShowLevels()
+        public void ShowLevels(List<LevelConfig> _levelConfig)
         {
-            for(int i = 0; i < 10; i++)
+            for(int i = 0; i < _levelConfig.Count; i++)
             {
                 var _levelBtn = Instantiate(levelBtnPrefab, transform).GetComponent<LevelBtn>();
                 _levelBtn.SetIndex(i);

@@ -24,7 +24,7 @@ namespace Match3
 
             scoresText.text = GameInfo.Instance.Scores.ToString();
 
-            levelsGrid.ShowLevels();
+            levelsGrid.ShowLevels(GameInfo.Instance.LevelsConfigs);
         }
 
 
