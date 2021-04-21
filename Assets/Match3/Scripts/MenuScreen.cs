@@ -15,12 +15,16 @@ namespace Match3
 
         [SerializeField]
         TextMeshProUGUI scoresText;
+        [SerializeField]
+        LevelsGrid levelsGrid;
 
         public override void Show()
         {
             base.Show();
 
             scoresText.text = GameInfo.Instance.Scores.ToString();
+
+            levelsGrid.ShowLevels();
         }
 
 
