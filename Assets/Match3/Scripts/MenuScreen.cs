@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using Match3.Base;
 using Match3.Core;
+using System;
 
 namespace Match3
 {
@@ -24,14 +25,15 @@ namespace Match3
 
             scoresText.text = GameInfo.Instance.Scores.ToString();
 
+            levelsGrid.LevelSelected += OnLevelSelected;
+
             levelsGrid.ShowLevels(GameInfo.Instance.LevelsConfigs);
         }
 
-
-        public void OnGamePressed()
+        private void OnLevelSelected(int _levelIndex)
         {
+            GameInfo.Instance.LevelIndex = _levelIndex;
             Exit(Exit_Game);
         }
-        
     }
 }

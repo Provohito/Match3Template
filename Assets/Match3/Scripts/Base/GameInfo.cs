@@ -14,6 +14,9 @@ namespace Match3.Base
         public List<LevelConfig> LevelsConfigs => levelsConfigs;
 
         public int Scores { get; set; }
+
+        public int LevelIndex { get; set; }
+        public LevelConfig LevelConfig => LevelsConfigs[LevelIndex];
     }
 
     [Serializable]

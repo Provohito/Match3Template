@@ -13,21 +13,23 @@ namespace Match3
         {
             base.Start();
 
-            SetCurrentScreen<GameScreen>().Show();
+            SetCurrentScreen<GameScreen>().ShowAndStartGame();
         }
         protected override void OnScreenExit(Type _screenType, string _exitCode)
         {
             if(_screenType == typeof(GameScreen))
             {
-                 if (_exitCode == GameScreen.Exit_Result)
+                 if (_exitCode == GameScreen.Exit_EndGame)
                     SetCurrentScreen<ResultsScreen>().Show();
+                 else if(_exitCode == GameScreen.Exit_Back)
+                    SceneManager.LoadScene(Scenesids.Menu);
             }
             else if (_screenType == typeof(ResultsScreen))
             {
                 if (_exitCode == ResultsScreen.Exit_Menu)
                     SceneManager.LoadScene(Scenesids.Menu);
                 else if (_exitCode == ResultsScreen.Exit_Replay)
-                    SetCurrentScreen<GameScreen>().Show();
+                    SetCurrentScreen<GameScreen>().ShowAndStartGame();
             }
         }
     }

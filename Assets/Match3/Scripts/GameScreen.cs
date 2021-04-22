@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Match3.Base;
 using Match3.Core;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,18 +10,63 @@ namespace Match3
 {
     public class GameScreen : BaseScreen
     {
-        public const string Exit_Result = "Exit_Result";
+        public const string Exit_Back = "Exit_Back";
+        public const string Exit_EndGame = "Exit_EndGame";
 
-        public override void Show()
+        [SerializeField]
+        TextMeshProUGUI stepsText;
+        [SerializeField]
+        TextMeshProUGUI matchesText;
+
+
+        LevelConfig levelConfig;
+
+        int stepsRemaining;
+        int matchsRemaining;
+
+        public void ShowAndStartGame()
         {
-            base.Show();
+            Show();
 
-            GameInfo.Instance.Scores = 10;
+            levelConfig = GameInfo.Instance.LevelConfig;
+            stepsRemaining = levelConfig.StepsCount;
+            matchsRemaining = levelConfig.MatchCount;
+
+            RefreshInfo();
         }
 
-        public void OnEndGamePressed()
+        public void MakeStep()
         {
-            Exit(Exit_Result);
+            stepsRemaining--;
+            RefreshInfo();
+            CheckForEndGame();
+        }
+
+        public void MakeMatch()
+        {
+            matchsRemaining--;
+            RefreshInfo();
+            CheckForEndGame();
+        }
+
+        void RefreshInfo()
+        {
+            stepsText.text = $"Steps: {stepsRemaining}";
+            matchesText.text = $"Matches: {matchsRemaining}";
+        }
+
+        void CheckForEndGame()
+        {
+            if(stepsRemaining == 0 ||
+                matchsRemaining == 0)
+            {
+                Exit(Exit_EndGame);
+            }
+        }
+
+        public void OnBackPressed()
+        {
+            Exit(Exit_Back);
         }
     }
 }

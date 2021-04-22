@@ -1,4 +1,5 @@
 ﻿using Match3.Base;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +24,10 @@ namespace Match3
         void OnLevelSelected(int _levelIndex)
         {
             Debug.Log("OnLevelSelected: "+ _levelIndex);
+
+            LevelSelected.Invoke(_levelIndex);
         }
+
+        public Action<int> LevelSelected { get; set; }
     }
 }
