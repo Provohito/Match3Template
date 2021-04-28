@@ -11,6 +11,12 @@ namespace Match3.Base
         [SerializeField]
         List<LevelConfig> levelsConfigs;
 
+        public void Setup()
+        {
+            if (GetLevelState(0) == LevelState.Locked)
+                SetLevelState(0, LevelState.Unlocked);
+        }
+
         public List<LevelConfig> LevelsConfigs => levelsConfigs;
 
         public void RegisterResult(int _stepsRemaining, int _matchsRemaining)
@@ -22,9 +28,28 @@ namespace Match3.Base
 
             Scores += LevelResultInfo.Scores;
 
+            if(LevelResultInfo.Scores > 0)
+            {
+                int _nextLevelIndex = LevelIndex + 1;
+                if(_nextLevelIndex < LevelsConfigs.Count &&
+                    GetLevelState(_nextLevelIndex) == LevelState.Locked)
+                {
+                    SetLevelState(_nextLevelIndex, LevelState.NeedUnlock);
+                }
+            }
+
             PlayerPrefs.Save();
         }
 
+        public LevelState GetLevelState(int _levelIndex)
+        {
+            return (LevelState)PlayerPrefs.GetInt(PrefsKeys.Level_ + _levelIndex);
+        }
+
+        public void SetLevelState(int _levelIndex, LevelState _levelState)
+        {
+            PlayerPrefs.SetInt(PrefsKeys.Level_ + _levelIndex, (int)_levelState);
+        }
         public int Scores
         {
             get => PlayerPrefs.GetInt(PrefsKeys.Scores);

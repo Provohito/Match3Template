@@ -27,7 +27,23 @@ namespace Match3
 
             levelsGrid.LevelSelected += OnLevelSelected;
 
-            levelsGrid.ShowLevels(GameInfo.Instance.LevelsConfigs);
+            var _levelsStates = new List<LevelState>();
+            for (int i = 0; i < GameInfo.Instance.LevelsConfigs.Count; i++)
+            {
+                var _levelState = GameInfo.Instance.GetLevelState(i);
+
+                if(_levelState == LevelState.NeedUnlock)
+                {
+                    _levelState = LevelState.Unlocked;
+                    GameInfo.Instance.SetLevelState(i, _levelState);
+                }
+
+                _levelsStates.Add(_levelState);
+            }
+
+            levelsGrid.ShowLevels(GameInfo.Instance.LevelsConfigs, _levelsStates);
+
+
         }
 
         private void OnLevelSelected(int _levelIndex)

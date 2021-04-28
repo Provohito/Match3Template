@@ -11,12 +11,12 @@ namespace Match3
         [SerializeField]
         GameObject levelBtnPrefab;
 
-        public void ShowLevels(List<LevelConfig> _levelConfig)
+        public void ShowLevels(List<LevelConfig> _levelConfig, List<LevelState> _levelsStates)
         {
             for(int i = 0; i < _levelConfig.Count; i++)
             {
                 var _levelBtn = Instantiate(levelBtnPrefab, transform).GetComponent<LevelBtn>();
-                _levelBtn.SetIndex(i);
+                _levelBtn.Setup(i, _levelsStates[i]);
                 _levelBtn.LevelPressed += OnLevelSelected;
             }
         }

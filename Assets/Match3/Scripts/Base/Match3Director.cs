@@ -8,9 +8,9 @@ namespace Match3.Base
 {
     public class Match3Director : AppDirector
     {
-        protected override void Awake()
+        private void Start()
         {
-            base.Awake();
+            GameInfo.Instance.Setup();
 
             SceneManager.LoadScene("Menu");
         }
