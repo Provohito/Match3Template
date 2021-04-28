@@ -13,10 +13,34 @@ namespace Match3.Base
 
         public List<LevelConfig> LevelsConfigs => levelsConfigs;
 
-        public int Scores { get; set; }
+        public void RegisterResult(int _stepsRemaining, int _matchsRemaining)
+        {
+            LevelResultInfo = new LevelResultInfo();
+
+            if (_matchsRemaining == 0)
+                LevelResultInfo.Scores = GlobalConfig.SCORES_FOR_STEP * _stepsRemaining;
+
+            Scores += LevelResultInfo.Scores;
+
+            PlayerPrefs.Save();
+        }
+
+        public int Scores
+        {
+            get => PlayerPrefs.GetInt(PrefsKeys.Scores);
+
+            set => PlayerPrefs.SetInt(PrefsKeys.Scores, value);
+        }
 
         public int LevelIndex { get; set; }
         public LevelConfig LevelConfig => LevelsConfigs[LevelIndex];
+
+        public LevelResultInfo LevelResultInfo { get; private set; }
+    }
+
+    public class LevelResultInfo
+    {
+        public int Scores { get; set; }
     }
 
     [Serializable]

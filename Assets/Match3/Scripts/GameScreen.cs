@@ -60,6 +60,7 @@ namespace Match3
             if(stepsRemaining == 0 ||
                 matchsRemaining == 0)
             {
+                GameInfo.Instance.RegisterResult(stepsRemaining, matchsRemaining);
                 Exit(Exit_EndGame);
             }
         }

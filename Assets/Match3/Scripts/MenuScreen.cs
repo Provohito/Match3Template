@@ -23,7 +23,7 @@ namespace Match3
         {
             base.Show();
 
-            scoresText.text = GameInfo.Instance.Scores.ToString();
+            scoresText.text = "Scores: " + GameInfo.Instance.Scores.ToString();
 
             levelsGrid.LevelSelected += OnLevelSelected;
 
