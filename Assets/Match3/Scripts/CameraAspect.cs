@@ -16,7 +16,6 @@ namespace Match3
         {
             targetCamera = GetComponent<Camera>();
         }
-        // Update is called once per frame
         void Update()
         {
             targetCamera.orthographicSize = (float)Screen.height / Screen.width * width;

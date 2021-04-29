@@ -18,6 +18,9 @@ namespace Match3
         [SerializeField]
         TextMeshProUGUI matchesText;
 
+        [SerializeField]
+        TileGrid tileGrid;
+
 
         LevelConfig levelConfig;
 
@@ -33,6 +36,8 @@ namespace Match3
             matchsRemaining = levelConfig.MatchCount;
 
             RefreshInfo();
+
+            tileGrid.Generate(new Vector2(7, 7));
         }
 
         public void MakeStep()

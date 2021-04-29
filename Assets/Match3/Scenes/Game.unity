@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c13c2daaba67a4998219abec73c5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilePrefab: {fileID: 0}
-  rootTr: {fileID: 0}
+  tilePrefab: {fileID: 8367058686983533488, guid: b53601565d7b58a489e6574881e5aeca, type: 3}
+  rootTr: {fileID: 2051086582}
 --- !u!4 &52149120
 Transform:
   m_ObjectHideFlags: 0
@@ -383,6 +383,10 @@ PrefabInstance:
       propertyPath: settingsScreen
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3049045966206665576, guid: a60c88657c18416448ceca40bc6183c2, type: 3}
+      propertyPath: tileGrid
+      value: 
+      objectReference: {fileID: 52149119}
     - target: {fileID: 6382704469682478144, guid: a60c88657c18416448ceca40bc6183c2, type: 3}
       propertyPath: m_Name
       value: GameScreen
