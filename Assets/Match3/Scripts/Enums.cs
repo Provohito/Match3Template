@@ -11,7 +11,7 @@ namespace Match3
         Unlocked
     }
 
-    public enum MormalTileContentId
+    public enum NormalTileContentId
     {
         Item1,
         Item2,
